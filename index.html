@@ -55,6 +55,36 @@
             font-size: 1.5rem;
             font-weight: bold;
         }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
         
         nav ul {
             list-style: none;
@@ -70,6 +100,49 @@
         
         nav a:hover {
             opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .company-name {
+                display: none;
+            }
+
+            nav ul {
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: #2d1b3d;
+                flex-direction: column;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                padding: 0;
+                margin: 0;
+            }
+
+            nav ul.active {
+                max-height: 500px;
+                padding: 1rem 0;
+            }
+
+            nav ul li {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 1rem 2rem;
+            }
         }
         
         section {
@@ -266,6 +339,11 @@
                 <img src="image/images.png" alt="Tonnet Ltd Logo" class="logo">
                 <span class="company-name">TONNET LTD</span>
             </div>
+            <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -433,6 +511,27 @@
                 }
             });
         });
+
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('nav ul');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
+            });
+
+            // Close menu when a link is clicked
+            document.querySelectorAll('nav ul a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
     </script>
 </body>
 </html>
