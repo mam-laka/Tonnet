@@ -65,6 +65,7 @@
             border: none;
             padding: 0.5rem;
         }
+        
 
         .hamburger span {
             width: 25px;
@@ -176,14 +177,187 @@
         }
         
         .hero {
-            background: linear-gradient(135deg, #2d1b3d 0%, #4a2d5f 100%);
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 15% 20%, rgba(135, 86, 255, 0.45) 0%, rgba(45, 27, 61, 0.85) 35%),
+                        linear-gradient(135deg, rgba(15,12,21,0.95), rgba(20,15,30,0.95)),
+                        url('image/image2.jpg');
+            background-size: 160% 160%, cover, cover;
+            background-position: center, center, center;
+            background-repeat: no-repeat;
             color: white;
-            text-align: center;
-            padding: 8rem 2rem 6rem;
+            padding: 7rem 2rem 5rem;
+            margin: 0;
+            max-width: none;
+            width: 100%;
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        .hero h1, .hero .tagline {
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 160px 160px;
+            opacity: 0.3;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            right: 10%;
+            top: 20%;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(167,120,255,0.8) 0%, rgba(45,27,61,0) 70%);
+            filter: blur(10px);
+            opacity: 0.6;
+        }
+        
+        .hero-content {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            z-index: 1;
+        }
+        
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .hero-eyebrow {
+            font-size: 0.9rem;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             color: white;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2rem;
+        }
+        
+        .hero-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .metric-pill {
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            min-width: 140px;
+        }
+        
+        .metric-pill strong {
+            display: block;
+            font-size: 1.8rem;
+            color: #d7c7ff;
+        }
+        
+        .metric-pill span {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 0.05rem;
+            text-transform: uppercase;
+        }
+        
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #a778ff, #6c3cd2);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 999px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(108, 60, 210, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-weight: 600;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(108, 60, 210, 0.4);
+        }
+        
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 320px;
+        }
+        
+        .dancing-orb {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(167,120,255,0.9) 0%, rgba(108,60,210,0.6) 50%, rgba(15,12,21,0.1) 80%);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 60px rgba(167,120,255,0.6);
+            animation: orbDance 6s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .orb-core {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #fff 0%, rgba(167,120,255,0.2) 70%);
+            animation: orbPulse 3s ease-in-out infinite alternate;
+            box-shadow: 0 0 40px rgba(255,255,255,0.5);
+        }
+        
+        .orb-ring {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            animation: ringSpin 10s linear infinite;
+            filter: drop-shadow(0 0 20px rgba(167,120,255,0.5));
+        }
+        
+        @keyframes orbDance {
+            0% { transform: translateY(0) scale(1); }
+            25% { transform: translate(-10px, -20px) scale(1.05); }
+            50% { transform: translateY(-10px) scale(0.98); }
+            75% { transform: translate(12px, -25px) scale(1.04); }
+            100% { transform: translateY(0) scale(1); }
+        }
+        
+        @keyframes orbPulse {
+            from { transform: scale(0.9); opacity: 0.7; }
+            to { transform: scale(1.1); opacity: 1; }
+        }
+        
+        @keyframes ringSpin {
+            from { transform: rotateX(65deg) rotateZ(0deg); }
+            to { transform: rotateX(65deg) rotateZ(360deg); }
         }
         
         .stats {
@@ -356,9 +530,24 @@
     </header>
 
     <section id="home" class="hero">
-        <h1>TONNET LTD</h1>
-        <p class="tagline">Precision. Consistency. Reliability.</p>
-        <p style="font-size: 1.2rem; margin-top: 1rem;">Trusted Supplier to Carrefour Kenya Since 2020</p>
+        <div class="hero-content">
+            <div class="hero-text">
+                <span class="hero-eyebrow">Precision supply partner</span>
+                <h1>Global-scale reliability, crafted in Kenya.</h1>
+                <p>Tonnet Ltd powers Carrefour Kenya with dependable premium scale labels, rigorous quality control, and responsive delivery systems that keep retail floors running.</p>
+          
+                <a class="cta-btn" href="#contact">
+                    Connect With Tonnet
+                    <span aria-hidden="true">→</span>
+                </a>
+            </div>
+            <div class="hero-visual" aria-hidden="true">
+                <div class="dancing-orb">
+                    <div class="orb-core"></div>
+                    <span class="orb-ring"></span>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="about">
