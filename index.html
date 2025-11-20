@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tonnet Ltd - Precision. Consistency. Reliability.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background: #2d1b3d;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 8px;
+            padding: 5px;
+        }
+        
+        .company-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.7;
+        }
+        
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section:first-of-type {
+            margin-top: 80px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #2d1b3d;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #2d1b3d;
+            border-bottom: 3px solid #2d1b3d;
+            padding-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #2d1b3d 0%, #4a2d5f 100%);
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem 6rem;
+        }
+        
+        .hero h1, .hero .tagline {
+            color: white;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .stat-card {
+            background: #f8f8f8;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card h3 {
+            font-size: 2.5rem;
+            color: #2d1b3d;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-card p {
+            color: #666;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            padding: 2rem;
+            border-left: 4px solid #2d1b3d;
+            background: #f8f8f8;
+            border-radius: 5px;
+        }
+        
+        .feature-card h3 {
+            color: #2d1b3d;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #2d1b3d;
+        }
+        
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0.5rem;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #2d1b3d;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #2d1b3d;
+        }
+        
+        .timeline-item h3 {
+            color: #2d1b3d;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-info {
+            background: #2d1b3d;
+            color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .contact-info h2 {
+            color: white;
+            border-color: white;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            text-align: center;
+        }
+        
+        .contact-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 6rem 2rem 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img src="image/images.png" alt="Tonnet Ltd Logo" class="logo">
+                <span class="company-name">TONNET LTD</span>
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#journey">Our Journey</a></li>
+                <li><a href="#leadership">Leadership</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>TONNET LTD</h1>
+        <p class="tagline">Precision. Consistency. Reliability.</p>
+        <p style="font-size: 1.2rem; margin-top: 1rem;">Trusted Supplier to Carrefour Kenya Since 2020</p>
+    </section>
+
+    <section id="about">
+        <h2>Company Overview</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 2rem;">Tonnet Ltd is a Kenyan supply company built on precision and operational reliability. Originally a major meat supplier to Carrefour generating KES 18 million monthly, we are now the exclusive premium scale label supplier to key Carrefour outlets in Kenya.</p>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h3>2020</h3>
+                <p>Partnership Started</p>
+            </div>
+            <div class="stat-card">
+                <h3>KES 18M</h3>
+                <p>Monthly Revenue (Peak)</p>
+            </div>
+            <div class="stat-card">
+                <h3>100%</h3>
+                <p>Supply Reliability</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Core Business: Scale Labels</h2>
+        <p style="margin-bottom: 2rem;">We supply durable, machine-compatible scale labels used for weighing, pricing, and product identification, optimized for high-volume, fast-paced retail environments.</p>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h3>🎯 Reliability</h3>
+                <p>Uninterrupted supply history with consistent delivery performance</p>
+            </div>
+            <div class="feature-card">
+                <h3>✓ Quality Control</h3>
+                <p>Strict checks on all batches to ensure product excellence</p>
+            </div>
+            <div class="feature-card">
+                <h3>⚡ Operational Excellence</h3>
+                <p>Efficient systems and processes for rapid fulfillment</p>
+            </div>
+            <div class="feature-card">
+                <h3>🤝 Proven Performance</h3>
+                <p>Long-term partnership with major retail chains</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="journey">
+        <h2>Our Journey With Carrefour</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>2020 - Partnership Begins</h3>
+                <p>Established relationship with Carrefour Kenya as a major meat supplier</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Growth Phase</h3>
+                <p>Built reputation on consistency, quality, and timely delivery generating KES 18 million monthly</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Evolution</h3>
+                <p>Transitioned to become exclusive premium scale label supplier</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Today</h3>
+                <p>Supporting Carrefour's operations across multiple departments with reliable scale label supply</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="leadership">
+        <h2>Leadership: Danijel Cekovic</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 1.5rem;"><strong>Founder & Director of Tonnet Ltd</strong></p>
+        <p style="margin-bottom: 1rem;">Danijel brings a unique background in sports science and high-performance training to business leadership. His management style is driven by discipline, structure, and consistency—principles that define Tonnet Ltd's operational approach.</p>
+        
+        <div style="margin-top: 3rem;">
+            <h3 style="color: #2d1b3d; margin-bottom: 1rem;">Mission, Vision & Values</h3>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Mission</h3>
+                    <p>Deliver consistent, high-quality retail supply solutions</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Vision</h3>
+                    <p>Become East Africa's most dependable retail supplier</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Values</h3>
+                    <p>Integrity • Reliability • Quality • Efficiency • Partnership</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-info">
+            <h2>Get In Touch</h2>
+            <p style="margin-bottom: 2rem;">Robust logistics and fulfillment framework. Responsive to restock needs and operational demands.</p>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <strong>📍 Location</strong>
+                    <p>Nairobi, Kenya</p>
+                </div>
+                <div class="contact-item">
+                    <strong>📧 Email</strong>
+                    <p><a href="mailto:ceo@tonnett.com">ceo@tonnett.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <strong>📞 Phone</strong>
+                    <p><a href="tel:+254712370708">+254 712 370 708</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Tonnet Ltd. All rights reserved. | Precision. Consistency. Reliability.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add active state to nav links on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
